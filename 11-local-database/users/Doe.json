@@ -1,0 +1,12 @@
+{
+  "Name": "Doe",
+  "Age": 40,
+  "Contact": "1234567890",
+  "Comapny": "ABC",
+  "Address": {
+    "Street": "Street 2",
+    "City": "City 2",
+    "State": "State 2",
+    "Pincode": 123456
+  }
+}
