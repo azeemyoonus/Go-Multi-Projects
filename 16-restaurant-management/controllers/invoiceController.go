@@ -57,12 +57,13 @@ func GetInvoice() gin.HandlerFunc {
 		defer cancel()
 
 		InvoiceId := c.Param("invoice_id")
-		filter := bson.M{"invoice_id": InvoiceId}
+		objID,_ := primitive.ObjectIDFromHex(InvoiceId)
+		filter := bson.M{"_id": objID}
 		var invoice models.Invoice
 
 		err := invoiceCollection.FindOne(ctx, filter).Decode(&invoice)
 		if err != nil {
-			c.JSON(http.StatusInternalServerError, gin.H{"error": "Error while fetching invoice item"})
+			c.JSON(http.StatusInternalServerError, gin.H{"error": "Error while fetching invoice item" + err.Error()})
 			return
 		}
 		var invoiceView InvoiceViewFormat

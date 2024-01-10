@@ -45,9 +45,15 @@ func GetOrder() gin.HandlerFunc {
 		var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
 		defer cancel()
 		OrderId := c.Param("order_id")
+		objId, err := primitive.ObjectIDFromHex(OrderId)
+		if err != nil {
+			c.JSON(500, gin.H{"error": "Error while converting string to object id"})
+			return
+		}
+		filter := bson.M{"_id": objId}
 		var order models.Order
 
-		err := menuCollection.FindOne(ctx, bson.M{"menu_id": OrderId}).Decode(&order)
+		err = orderCollection.FindOne(ctx, filter).Decode(&order)
 		if err != nil {
 			c.JSON(500, gin.H{"error": "Error while fetching order item"})
 			return
