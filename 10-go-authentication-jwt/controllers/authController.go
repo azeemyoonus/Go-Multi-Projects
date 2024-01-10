@@ -9,6 +9,7 @@ import (
 	"github.com/amitamrutiya/10-go-authentication-jwt/database"
 	helper "github.com/amitamrutiya/10-go-authentication-jwt/helpers"
 	"github.com/amitamrutiya/10-go-authentication-jwt/models"
+	"github.com/go-playground/validator/v10"
 	"github.com/gin-gonic/gin"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
@@ -16,6 +17,7 @@ import (
 )
 
 var userCollection *mongo.Collection = database.OpenCollection(database.Client, "user")
+var validate = validator.New()
 
 func Singup() gin.HandlerFunc {
 	return func(c *gin.Context) {
