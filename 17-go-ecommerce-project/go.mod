@@ -7,7 +7,7 @@ require (
 	github.com/gin-gonic/gin v1.9.1
 	github.com/go-playground/validator/v10 v10.16.0
 	go.mongodb.org/mongo-driver v1.13.1
-	golang.org/x/crypto v0.18.0
+	golang.org/x/crypto v0.21.0
 )
 
 require (
